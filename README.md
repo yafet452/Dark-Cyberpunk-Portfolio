@@ -1,71 +1,52 @@
 # Design Report
 
-**Project Name:** Creative Developer Portfolio
+**Project Name:** Neon Vipers Esports Team Website
 
-**Student Name:** ________________________________ (Fill in your name)
+**Student Name:** Yafet
 
 ---
 
 ## 1. The Vibe/Theme
 
-**Theme:** Dark Cyberpunk Elegance
+**Theme:** Cyberpunk Esports
 
-**Reason:** I chose a dark theme with neon cyan accents to create a modern, futuristic aesthetic that feels premium and professional. The dark background reduces eye strain and makes the colorful elements pop, creating an immersive experience that stands out from typical portfolios.
+**Reason:** A dark, futuristic cyberpunk theme matches the competitive gaming vibe of an esports team. The neon accents create an immersive, high-tech atmosphere that appeals to gamers.
 
 ---
 
 ## 2. Color Palette
 
-| Color Role | Hex Code | Preview |
-|------------|----------|---------|
-| **Primary Color** | `#00d4ff` | Neon Cyan |
-| **Accent Color** | `#ff6b9d` | Soft Pink |
-| **Background** | `#0a0e17` | Deep Midnight |
-| **Card Background** | `#121a2b` | Navy Blue |
+**Primary Color (Hex):** #39ff14
 
-**Reason:** The neon cyan (#00d4ff) creates energy and a tech-forward feel, while the soft pink accent (#ff6b9d) adds warmth and visual interest. The deep dark background (#0a0e17) provides excellent contrast and a premium, sophisticated appearance.
+**Accent Color (Hex):** #bf00ff
+
+**Reason:** Neon green (#39ff14) represents energy and gaming culture. Purple (#bf00ff) adds mystery and premium contrast, together creating the classic cyberpunk aesthetic.
 
 ---
 
 ## 3. Typography (Fonts)
 
-**Font Family:** Outfit (Google Fonts)
+**Font Family:** Share Tech Mono (Monospace/Courier)
 
-**Reason:** Outfit is a modern geometric sans-serif font that is clean, highly readable, and has a contemporary feel. Its varied weights (300-700) allow for excellent visual hierarchy between headings and body text.
+**Reason:** Monospace fonts have a "hacker/terminal" feel that fits the cyberpunk gaming theme perfectly. The fixed-width characters create a technical, futuristic look.
 
 ---
 
 ## 4. AI Contribution
 
-**Best Prompt I Used:**
+**Best Prompt I Used (paste exactly):**
 
-> "Build a modern portfolio website with a dark cyberpunk theme. Use neon cyan (#00d4ff) as the primary accent color. Include sections for: hero with animated gradient orbs, about me with stats, skills with progress bars, project cards, and a contact form. Use the Outfit font from Google Fonts. Add smooth scroll, hover animations, and glassmorphism effects. Make it fully responsive."
-
----
-
-## 5. File Structure
-
-```
-README.md/
-├── index.html      (Main HTML structure)
-├── style.css       (All styling and animations)
-├── script.js       (Interactivity and animations)
-└── README.md       (This design report)
-```
+Build an esports team website called Neon Vipers with a cyberpunk theme. Use dark mode with neon green (#39ff14) and purple accents. Include a Hero section with a Join the Squad button, a Meet the Players section with 3 player cards showing avatar, name, role, and stats, and an Upcoming Tournaments list with dates and prize pools. Use Courier/monospace fonts. Add glitch text effects and glowing hover effects on buttons. Put all CSS inside the HTML file using internal styles.
 
 ---
 
-## 6. Features
+## 5. Features
 
-- ✅ Responsive design (mobile-first)
-- ✅ Animated gradient orbs in hero section
-- ✅ Smooth scroll navigation
-- ✅ Skill progress bar animations
-- ✅ Project cards with hover effects
-- ✅ Contact form with validation
-- ✅ Glassmorphism effects
-- ✅ Mobile hamburger menu
-
----
-
-*Built with HTML, CSS, and JavaScript. Designed to be deployed on Vercel.*
+- Dark mode background
+- Neon green (#39ff14) and purple (#bf00ff) colors
+- Monospace font
+- Hero + "Join the Squad" button
+- Meet the Players (3 cards)
+- Upcoming Tournaments list
+- Glitch animations
+- Glowing button hover effects

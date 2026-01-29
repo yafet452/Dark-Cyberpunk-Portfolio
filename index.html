@@ -1,218 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A modern personal portfolio showcasing creative work and skills">
-    <title>My Portfolio | Creative Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description"
+        content="Neon Vipers - Elite Esports Team. Join the squad and compete at the highest level.">
+    <title>Neon Vipers | Esports Team</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================================
+           CSS Variables - Cyberpunk Theme
+           ================================ */
+        :root {
+            --neon-green: #39ff14;
+            --neon-purple: #bf00ff;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --font-mono: 'Share Tech Mono', 'Courier New', Courier, monospace;
+        }
+
+        /* ================================
+           Reset & Base Styles
+           ================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-mono);
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scanline Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 2px);
+            z-index: 9999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================================
+           Navigation
+           ================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+            letter-spacing: 3px;
+            animation: glitch 3s infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* ================================
+           Hero Section
+           ================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at top right, rgba(191, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(57, 255, 20, 0.1) 0%, transparent 50%),
+                var(--dark-bg);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--neon-purple);
+            color: var(--neon-purple);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+        }
+
+        .hero-title .neon {
+            color: var(--neon-green);
+            text-shadow:
+                0 0 10px var(--neon-green),
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green),
+                0 0 80px var(--neon-green);
+            animation: flicker 4s infinite;
+        }
+
+        .hero-title .vipers {
+            color: var(--neon-purple);
+            text-shadow:
+                0 0 10px var(--neon-purple),
+                0 0 20px var(--neon-purple),
+                0 0 40px var(--neon-purple);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            letter-spacing: 5px;
+        }
+
+        /* Glowing Button */
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 2px solid var(--neon-green);
+            background: transparent;
+            color: var(--neon-green);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow:
+                0 0 20px var(--neon-green),
+                0 0 40px var(--neon-green),
+                0 0 60px var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* ================================
+           Players Section
+           ================================ */
+        .players {
+            padding: 100px 0;
+            background: var(--darker-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .player-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-purple));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .player-card:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .player-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 3px solid var(--neon-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: rgba(191, 0, 255, 0.1);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.3);
+        }
+
+        .player-name {
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .player-role {
+            color: var(--neon-purple);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .player-stats {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        /* ================================
+           Tournaments Section
+           ================================ */
+        .tournaments {
+            padding: 100px 0;
+            background:
+                radial-gradient(ellipse at center, rgba(57, 255, 20, 0.05) 0%, transparent 70%),
+                var(--dark-bg);
+        }
+
+        .tournament-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tournament-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 30px;
+            background: var(--card-bg);
+            border: 1px solid #222;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tournament-item:hover {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.2);
+        }
+
+        .tournament-info {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .tournament-date {
+            text-align: center;
+            padding: 15px;
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+            min-width: 80px;
+        }
+
+        .tournament-date .day {
+            font-size: 1.8rem;
+            color: var(--neon-green);
+            display: block;
+        }
+
+        .tournament-date .month {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tournament-details h3 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .tournament-details p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .tournament-prize {
+            color: var(--neon-purple);
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(191, 0, 255, 0.5);
+        }
+
+        /* ================================
+           Footer
+           ================================ */
+        .footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .footer span {
+            color: var(--neon-green);
+        }
+
+        /* ================================
+           Animations
+           ================================ */
+        @keyframes glitch {
+
+            0%,
+            90%,
+            100% {
+                transform: translate(0);
+            }
+
+            92% {
+                transform: translate(-2px, 2px);
+            }
+
+            94% {
+                transform: translate(2px, -2px);
+            }
+
+            96% {
+                transform: translate(-2px, -2px);
+            }
+
+            98% {
+                transform: translate(2px, 2px);
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            54%,
+            56%,
+            100% {
+                text-shadow:
+                    0 0 10px var(--neon-green),
+                    0 0 20px var(--neon-green),
+                    0 0 40px var(--neon-green),
+                    0 0 80px var(--neon-green);
+            }
+
+            20%,
+            24%,
+            55% {
+                text-shadow: none;
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 10px rgba(191, 0, 255, 0.5);
+            }
+
+            50% {
+                opacity: 0.7;
+                box-shadow: 0 0 20px rgba(191, 0, 255, 0.8);
+            }
+        }
+
+        /* ================================
+           Responsive Design
+           ================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                letter-spacing: 5px;
+            }
+
+            .tournament-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .tournament-info {
+                flex-direction: column;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <span class="logo-icon">✦</span>
-                <span class="logo-text">Portfolio</span>
-            </a>
+            <a href="#" class="logo">NEON VIPERS</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#players">Players</a></li>
+                <li><a href="#tournaments">Tournaments</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
         <div class="hero-content">
-            <p class="hero-greeting">Hello, I'm</p>
+            <div class="hero-badge">// ELITE ESPORTS TEAM //</div>
             <h1 class="hero-title">
-                <span class="name-highlight">Creative</span>
-                <span class="name-secondary">Developer</span>
+                <span class="neon">NEON</span><br>
+                <span class="vipers">VIPERS</span>
             </h1>
-            <p class="hero-subtitle">Building beautiful digital experiences with code and creativity</p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <p>Scroll Down</p>
+            <p class="hero-subtitle">DOMINATE. CONQUER. REPEAT.</p>
+            <a href="#players" class="btn">JOIN THE SQUAD</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Meet the Players Section -->
+    <section id="players" class="players">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-frame">
-                        <div class="placeholder-avatar">👨‍💻</div>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h3>Passionate about creating amazing experiences</h3>
-                    <p>I'm a creative developer who loves turning ideas into reality through code. With a keen eye for design and a passion for clean, efficient code, I create websites and applications that not only look great but also provide exceptional user experiences.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, learning new skills, and pushing the boundaries of what's possible on the web.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">10+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Technologies</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Dedication</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">MEET THE <span>PLAYERS</span></h2>
+                <p class="section-subtitle">// THE ELITE SQUAD //</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>HTML5</h3>
-                    <p>Semantic markup and accessibility</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 90%;"></div>
+            <div class="players-grid">
+                <!-- Player 1 -->
+                <div class="player-card">
+                    <div class="player-avatar">🐍</div>
+                    <h3 class="player-name">SHADOW_X</h3>
+                    <p class="player-role">TEAM CAPTAIN / ENTRY FRAGGER</p>
+                    <div class="player-stats">
+                        K/D: 2.4 | Win Rate: 78%<br>
+                        Specialty: Aggressive Plays
                     </div>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>CSS3</h3>
-                    <p>Modern layouts and animations</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%;"></div>
+                <!-- Player 2 -->
+                <div class="player-card">
+                    <div class="player-avatar">⚡</div>
+                    <h3 class="player-name">VOLT_STRIKE</h3>
+                    <p class="player-role">SUPPORT / STRATEGIST</p>
+                    <div class="player-stats">
+                        K/D: 1.9 | Win Rate: 82%<br>
+                        Specialty: Utility Master
                     </div>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>JavaScript</h3>
-                    <p>Interactive and dynamic features</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">📱</div>
-                    <h3>Responsive Design</h3>
-                    <p>Mobile-first development</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 88%;"></div>
+                <!-- Player 3 -->
+                <div class="player-card">
+                    <div class="player-avatar">🎯</div>
+                    <h3 class="player-name">CYBER_SNIPE</h3>
+                    <p class="player-role">AWP / SNIPER</p>
+                    <div class="player-stats">
+                        K/D: 3.1 | Win Rate: 75%<br>
+                        Specialty: Long Range Eliminations
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <!-- Upcoming Tournaments Section -->
+    <section id="tournaments" class="tournaments">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🎮</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Game Arcade</h3>
-                        <p>A collection of fun browser-based games built with JavaScript</p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Canvas</span>
-                            <span class="tag">Games</span>
-                        </div>
-                    </div>
-                </article>
-                <article class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🌤️</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Weather App</h3>
-                        <p>Real-time weather tracking with beautiful visualizations</p>
-                        <div class="project-tags">
-                            <span class="tag">API</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Responsive</span>
-                        </div>
-                    </div>
-                </article>
-                <article class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">📝</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Blog Platform</h3>
-                        <p>A modern blog with clean typography and smooth animations</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Design</span>
-                        </div>
-                    </div>
-                </article>
+            <div class="section-header">
+                <h2 class="section-title">UPCOMING <span>TOURNAMENTS</span></h2>
+                <p class="section-subtitle">// WHERE LEGENDS ARE MADE //</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <p class="contact-intro">Have a project in mind or just want to say hello? Feel free to reach out!</p>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <div class="tournament-list">
+                <!-- Tournament 1 -->
+                <div class="tournament-item">
+                    <div class="tournament-info">
+                        <div class="tournament-date">
+                            <span class="day">15</span>
+                            <span class="month">FEB</span>
+                        </div>
+                        <div class="tournament-details">
+                            <h3>CYBER CLASH CHAMPIONSHIP</h3>
+                            <p>Online • 32 Teams • Best of 5</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <div class="tournament-prize">$10,000</div>
+                </div>
+                <!-- Tournament 2 -->
+                <div class="tournament-item">
+                    <div class="tournament-info">
+                        <div class="tournament-date">
+                            <span class="day">28</span>
+                            <span class="month">FEB</span>
+                        </div>
+                        <div class="tournament-details">
+                            <h3>NEON LEAGUE FINALS</h3>
+                            <p>LAN Event • Los Angeles • 16 Teams</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <div class="tournament-prize">$25,000</div>
+                </div>
+                <!-- Tournament 3 -->
+                <div class="tournament-item">
+                    <div class="tournament-info">
+                        <div class="tournament-date">
+                            <span class="day">10</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="tournament-details">
+                            <h3>GLOBAL ELITE INVITATIONAL</h3>
+                            <p>Online Qualifier • Open Registration</p>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
-                </form>
-                <div class="contact-socials">
-                    <a href="#" class="social-link" aria-label="GitHub">
-                        <span>GitHub</span>
-                    </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Email">
-                        <span>Email</span>
-                    </a>
+                    <div class="tournament-prize">$5,000</div>
                 </div>
             </div>
         </div>
@@ -221,10 +652,15 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Creative Developer. Built with ❤️ and lots of ☕</p>
+            <div class="footer-links" style="margin-bottom: 20px;">
+                <a href="https://github.com/yafet452" target="_blank"
+                    style="color: var(--neon-green); margin: 0 15px; transition: all 0.3s ease;">[ GITHUB ]</a>
+                <a href="mailto:tesfameskels10@gmail.com"
+                    style="color: var(--neon-purple); margin: 0 15px; transition: all 0.3s ease;">[ EMAIL ]</a>
+            </div>
+            <p>&copy; 2026 <span>NEON VIPERS</span> ESPORTS | BUILT BY YAFET</p>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
+
 </html>
