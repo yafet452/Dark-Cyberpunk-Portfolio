@@ -4,6 +4,11 @@
 
 **Student Name:** Yafet
 
+## Project Links
+
+- **GitHub Repository:** [Link to your GitHub repository]
+- **Live Site (Vercel):** [Link to your Vercel deployment]
+
 ---
 
 ## 1. The Vibe/Theme
